@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		514D9B211D4D1B1A00B10A3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */; };
+		514D9B261D4D1B1A00B10A3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514D9B241D4D1B1A00B10A3A /* Main.storyboard */; };
+		514D9B291D4D1B1A00B10A3A /* MyWonders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B271D4D1B1A00B10A3A /* MyWonders.xcdatamodeld */; };
+		514D9B2B1D4D1B1A00B10A3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 514D9B2A1D4D1B1A00B10A3A /* Assets.xcassets */; };
+		514D9B2E1D4D1B1A00B10A3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514D9B2C1D4D1B1A00B10A3A /* LaunchScreen.storyboard */; };
+		514D9B361D4D47F100B10A3A /* WhereAmIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B351D4D47F100B10A3A /* WhereAmIViewController.swift */; };
+		514D9B381D4D480D00B10A3A /* WondersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B371D4D480D00B10A3A /* WondersTableViewController.swift */; };
+		514D9B3A1D4D482100B10A3A /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B391D4D482100B10A3A /* SettingsTableViewController.swift */; };
+		514D9B451D4D595800B10A3A /* Photos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B3B1D4D595800B10A3A /* Photos+CoreDataProperties.swift */; };
+		514D9B461D4D595800B10A3A /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B3C1D4D595800B10A3A /* Photos.swift */; };
+		514D9B471D4D595800B10A3A /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B3D1D4D595800B10A3A /* Settings+CoreDataProperties.swift */; };
+		514D9B481D4D595800B10A3A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B3E1D4D595800B10A3A /* Settings.swift */; };
+		514D9B491D4D595800B10A3A /* Sounds+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B3F1D4D595800B10A3A /* Sounds+CoreDataProperties.swift */; };
+		514D9B4A1D4D595800B10A3A /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B401D4D595800B10A3A /* Sounds.swift */; };
+		514D9B4B1D4D595800B10A3A /* Wonders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B411D4D595800B10A3A /* Wonders+CoreDataProperties.swift */; };
+		514D9B4C1D4D595800B10A3A /* Wonders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B421D4D595800B10A3A /* Wonders.swift */; };
+		514D9B4D1D4D595800B10A3A /* Videos+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B431D4D595800B10A3A /* Videos+CoreDataProperties.swift */; };
+		514D9B4E1D4D595800B10A3A /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B441D4D595800B10A3A /* Videos.swift */; };
+		514D9B501D4D640B00B10A3A /* AddWonderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B4F1D4D640B00B10A3A /* AddWonderViewController.swift */; };
+		514D9B521D4DA80200B10A3A /* ViewWonderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B511D4DA80200B10A3A /* ViewWonderViewController.swift */; };
+		514D9B541D4DBB9000B10A3A /* EditWonderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B531D4DBB9000B10A3A /* EditWonderViewController.swift */; };
+		51C52F791D50571B0065728F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C52F781D50571B0065728F /* MapKit.framework */; };
+		51C52F7B1D5057230065728F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51C52F7A1D5057230065728F /* CoreLocation.framework */; };
+		51C52F7D1D5061840065728F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C52F7C1D5061840065728F /* PhotosViewController.swift */; };
+		51C52F7F1D507D7D0065728F /* WonderPhototsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C52F7E1D507D7D0065728F /* WonderPhototsTableViewController.swift */; };
+		51E129151D558D9600F1F76F /* EditPhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E129141D558D9600F1F76F /* EditPhotosTableViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		514D9B1D1D4D1B1A00B10A3A /* MyWonders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWonders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyWonders/AppDelegate.swift; sourceTree = "<group>"; };
+		514D9B251D4D1B1A00B10A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		514D9B281D4D1B1A00B10A3A /* MyWonders.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyWonders.xcdatamodel; sourceTree = "<group>"; };
+		514D9B2A1D4D1B1A00B10A3A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MyWonders/Assets.xcassets; sourceTree = "<group>"; };
+		514D9B2D1D4D1B1A00B10A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		514D9B2F1D4D1B1A00B10A3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyWonders/Info.plist; sourceTree = "<group>"; };
+		514D9B351D4D47F100B10A3A /* WhereAmIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WhereAmIViewController.swift; path = MyWonders/WhereAmIViewController.swift; sourceTree = "<group>"; };
+		514D9B371D4D480D00B10A3A /* WondersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WondersTableViewController.swift; path = MyWonders/WondersTableViewController.swift; sourceTree = "<group>"; };
+		514D9B391D4D482100B10A3A /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsTableViewController.swift; path = MyWonders/SettingsTableViewController.swift; sourceTree = "<group>"; };
+		514D9B3B1D4D595800B10A3A /* Photos+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photos+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		514D9B3C1D4D595800B10A3A /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		514D9B3D1D4D595800B10A3A /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		514D9B3E1D4D595800B10A3A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		514D9B3F1D4D595800B10A3A /* Sounds+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sounds+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		514D9B401D4D595800B10A3A /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		514D9B411D4D595800B10A3A /* Wonders+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Wonders+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		514D9B421D4D595800B10A3A /* Wonders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wonders.swift; sourceTree = "<group>"; };
+		514D9B431D4D595800B10A3A /* Videos+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Videos+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		514D9B441D4D595800B10A3A /* Videos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
+		514D9B4F1D4D640B00B10A3A /* AddWonderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddWonderViewController.swift; sourceTree = "<group>"; };
+		514D9B511D4DA80200B10A3A /* ViewWonderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewWonderViewController.swift; sourceTree = "<group>"; };
+		514D9B531D4DBB9000B10A3A /* EditWonderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditWonderViewController.swift; sourceTree = "<group>"; };
+		51C52F781D50571B0065728F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		51C52F7A1D5057230065728F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		51C52F7C1D5061840065728F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		51C52F7E1D507D7D0065728F /* WonderPhototsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WonderPhototsTableViewController.swift; path = MyWonders/WonderPhototsTableViewController.swift; sourceTree = "<group>"; };
+		51E129141D558D9600F1F76F /* EditPhotosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPhotosTableViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		514D9B1A1D4D1B1A00B10A3A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51C52F7B1D5057230065728F /* CoreLocation.framework in Frameworks */,
+				51C52F791D50571B0065728F /* MapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		514D9B141D4D1B1A00B10A3A = {
+			isa = PBXGroup;
+			children = (
+				514D9B1F1D4D1B1A00B10A3A /* MyWonders */,
+				514D9B1E1D4D1B1A00B10A3A /* Products */,
+				514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */,
+				514D9B2F1D4D1B1A00B10A3A /* Info.plist */,
+				514D9B271D4D1B1A00B10A3A /* MyWonders.xcdatamodeld */,
+				514D9B2A1D4D1B1A00B10A3A /* Assets.xcassets */,
+				51C52F7A1D5057230065728F /* CoreLocation.framework */,
+				51C52F781D50571B0065728F /* MapKit.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		514D9B1E1D4D1B1A00B10A3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				514D9B1D1D4D1B1A00B10A3A /* MyWonders.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		514D9B1F1D4D1B1A00B10A3A /* MyWonders */ = {
+			isa = PBXGroup;
+			children = (
+				51E129181D55AA2A00F1F76F /* Controller */,
+				51E129171D55AA2100F1F76F /* View */,
+				51E129161D55AA1A00F1F76F /* Model */,
+			);
+			path = MyWonders;
+			sourceTree = "<group>";
+		};
+		51E129161D55AA1A00F1F76F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				514D9B3B1D4D595800B10A3A /* Photos+CoreDataProperties.swift */,
+				514D9B3C1D4D595800B10A3A /* Photos.swift */,
+				514D9B3D1D4D595800B10A3A /* Settings+CoreDataProperties.swift */,
+				514D9B3E1D4D595800B10A3A /* Settings.swift */,
+				514D9B3F1D4D595800B10A3A /* Sounds+CoreDataProperties.swift */,
+				514D9B401D4D595800B10A3A /* Sounds.swift */,
+				514D9B411D4D595800B10A3A /* Wonders+CoreDataProperties.swift */,
+				514D9B421D4D595800B10A3A /* Wonders.swift */,
+				514D9B431D4D595800B10A3A /* Videos+CoreDataProperties.swift */,
+				514D9B441D4D595800B10A3A /* Videos.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		51E129171D55AA2100F1F76F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				514D9B241D4D1B1A00B10A3A /* Main.storyboard */,
+				514D9B2C1D4D1B1A00B10A3A /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		51E129181D55AA2A00F1F76F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				51E129141D558D9600F1F76F /* EditPhotosTableViewController.swift */,
+				51C52F7E1D507D7D0065728F /* WonderPhototsTableViewController.swift */,
+				51C52F7C1D5061840065728F /* PhotosViewController.swift */,
+				514D9B351D4D47F100B10A3A /* WhereAmIViewController.swift */,
+				514D9B371D4D480D00B10A3A /* WondersTableViewController.swift */,
+				514D9B391D4D482100B10A3A /* SettingsTableViewController.swift */,
+				514D9B531D4DBB9000B10A3A /* EditWonderViewController.swift */,
+				514D9B511D4DA80200B10A3A /* ViewWonderViewController.swift */,
+				514D9B4F1D4D640B00B10A3A /* AddWonderViewController.swift */,
+			);
+			name = Controller;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		514D9B1C1D4D1B1A00B10A3A /* MyWonders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 514D9B321D4D1B1A00B10A3A /* Build configuration list for PBXNativeTarget "MyWonders" */;
+			buildPhases = (
+				514D9B191D4D1B1A00B10A3A /* Sources */,
+				514D9B1A1D4D1B1A00B10A3A /* Frameworks */,
+				514D9B1B1D4D1B1A00B10A3A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyWonders;
+			productName = MyWonders;
+			productReference = 514D9B1D1D4D1B1A00B10A3A /* MyWonders.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		514D9B151D4D1B1A00B10A3A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Gina De La Rosa";
+				TargetAttributes = {
+					514D9B1C1D4D1B1A00B10A3A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 514D9B181D4D1B1A00B10A3A /* Build configuration list for PBXProject "MyWonders" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 514D9B141D4D1B1A00B10A3A;
+			productRefGroup = 514D9B1E1D4D1B1A00B10A3A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				514D9B1C1D4D1B1A00B10A3A /* MyWonders */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		514D9B1B1D4D1B1A00B10A3A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				514D9B2E1D4D1B1A00B10A3A /* LaunchScreen.storyboard in Resources */,
+				514D9B2B1D4D1B1A00B10A3A /* Assets.xcassets in Resources */,
+				514D9B261D4D1B1A00B10A3A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		514D9B191D4D1B1A00B10A3A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51C52F7F1D507D7D0065728F /* WonderPhototsTableViewController.swift in Sources */,
+				514D9B471D4D595800B10A3A /* Settings+CoreDataProperties.swift in Sources */,
+				51C52F7D1D5061840065728F /* PhotosViewController.swift in Sources */,
+				514D9B361D4D47F100B10A3A /* WhereAmIViewController.swift in Sources */,
+				514D9B291D4D1B1A00B10A3A /* MyWonders.xcdatamodeld in Sources */,
+				514D9B521D4DA80200B10A3A /* ViewWonderViewController.swift in Sources */,
+				514D9B4E1D4D595800B10A3A /* Videos.swift in Sources */,
+				514D9B451D4D595800B10A3A /* Photos+CoreDataProperties.swift in Sources */,
+				514D9B541D4DBB9000B10A3A /* EditWonderViewController.swift in Sources */,
+				514D9B4B1D4D595800B10A3A /* Wonders+CoreDataProperties.swift in Sources */,
+				514D9B4C1D4D595800B10A3A /* Wonders.swift in Sources */,
+				514D9B3A1D4D482100B10A3A /* SettingsTableViewController.swift in Sources */,
+				514D9B4D1D4D595800B10A3A /* Videos+CoreDataProperties.swift in Sources */,
+				514D9B4A1D4D595800B10A3A /* Sounds.swift in Sources */,
+				514D9B211D4D1B1A00B10A3A /* AppDelegate.swift in Sources */,
+				51E129151D558D9600F1F76F /* EditPhotosTableViewController.swift in Sources */,
+				514D9B481D4D595800B10A3A /* Settings.swift in Sources */,
+				514D9B491D4D595800B10A3A /* Sounds+CoreDataProperties.swift in Sources */,
+				514D9B381D4D480D00B10A3A /* WondersTableViewController.swift in Sources */,
+				514D9B461D4D595800B10A3A /* Photos.swift in Sources */,
+				514D9B501D4D640B00B10A3A /* AddWonderViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		514D9B241D4D1B1A00B10A3A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				514D9B251D4D1B1A00B10A3A /* Base */,
+			);
+			name = Main.storyboard;
+			path = MyWonders;
+			sourceTree = "<group>";
+		};
+		514D9B2C1D4D1B1A00B10A3A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				514D9B2D1D4D1B1A00B10A3A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = MyWonders;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		514D9B301D4D1B1A00B10A3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		514D9B311D4D1B1A00B10A3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		514D9B331D4D1B1A00B10A3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MyWonders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ginadelarosa.MyWonders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		514D9B341D4D1B1A00B10A3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MyWonders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ginadelarosa.MyWonders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		514D9B181D4D1B1A00B10A3A /* Build configuration list for PBXProject "MyWonders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				514D9B301D4D1B1A00B10A3A /* Debug */,
+				514D9B311D4D1B1A00B10A3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		514D9B321D4D1B1A00B10A3A /* Build configuration list for PBXNativeTarget "MyWonders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				514D9B331D4D1B1A00B10A3A /* Debug */,
+				514D9B341D4D1B1A00B10A3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		514D9B271D4D1B1A00B10A3A /* MyWonders.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				514D9B281D4D1B1A00B10A3A /* MyWonders.xcdatamodel */,
+			);
+			currentVersion = 514D9B281D4D1B1A00B10A3A /* MyWonders.xcdatamodel */;
+			name = MyWonders.xcdatamodeld;
+			path = MyWonders/MyWonders.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 514D9B151D4D1B1A00B10A3A /* Project object */;
+}
