@@ -59,6 +59,19 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
                 presentViewController(imagePicker, animated: true, completion: nil)
             }
         }
+        
+        if photosSourceType == "Camera" {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) { // Checks if camera is available
+                imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+                imagePicker.cameraCaptureMode = .Photo
+                presentViewController(imagePicker, animated: true, completion: nil)
+            } else {
+                noCamera() // Will run noCamera function 
+            }
+        }
+
+        
+        
     }
 
     func imagePickerControllerDidCancel(picker: UIImagePickerController) { //delegate to cancel photo selection from library
@@ -105,6 +118,13 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
                 }
     }
     
+    }
+    
+    func noCamera() { // Function if user does not have camera
+        let alertVC = UIAlertController(title: "No Camera!", message: "Your iDevice does not have a camera", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
+        alertVC.addAction(okAction)
+        presentViewController(alertVC, animated: true, completion: nil)
     }
 
 }

@@ -127,13 +127,21 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
     
     //Prepare for Segue to Photos to pass wonder name value. 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "editToWonderPhotos" {
+        
+        if segue.identifier == "editToWonderPhotos" { // Allow edit from Photo
             
             let vc = segue.destinationViewController as! PhotosViewController
             vc.photosWonderName = editSelectedWonderName
             vc.photosSourceType = "Photos"
         }
-    }
+        
+        if segue.identifier == "editToCamera" { // Allows edit from Camera.
+            
+            let vc = segue.destinationViewController as! PhotosViewController
+            vc.photosWonderName = editSelectedWonderName
+            vc.photosSourceType = "Camera"
+        }
+}
     
     // Keyboard Control
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -17,6 +17,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wonderLongitudeTextField: UITextField!
     @IBOutlet weak var wonderTextView: UITextView!
     @IBOutlet weak var photosButtonLabel: UIButton!
+    @IBOutlet weak var cameraButtonLabel: UIButton!
     
     var wonderName:String = "" // It will be empty.
     var wonderLatitude:Double = 0.0
@@ -38,6 +39,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
         wonderTextView.text = ".."
         self.wonderNameTextField.delegate = self
         photosButtonLabel.alpha = 0
+        cameraButtonLabel.alpha = 0
     }
     
     @IBAction func addSaveButtonAction(sender: AnyObject) { // Need to add this action for Save button.
@@ -66,6 +68,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
             saveConfirmationLabel.text = "Saved:" + wonderName
             
             photosButtonLabel.alpha = 1
+            cameraButtonLabel.alpha = 1
             
         } catch {
             saveConfirmationLabel.alpha = 1 
@@ -89,6 +92,14 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
             vc.photosWonderName = wonderName //the new vc var = this vc var
             vc.photosSourceType = "Photos" //the new vc var = this vc var
         }
+        
+        if segue.identifier == "addToCamera" {
+            
+            let vc = segue.destinationViewController as! PhotosViewController
+            vc.photosWonderName = wonderName //the new vc var = this vc var
+            vc.photosSourceType = "Camera" //the new vc var = this vc var
+        }
+
     
     }
     
