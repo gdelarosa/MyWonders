@@ -17,17 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wonders App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lL2-cn-IPG">
-                                <rect key="frame" x="175" y="280" width="233" height="41"/>
-                                <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wonderFront" translatesAutoresizingMaskIntoConstraints="NO" id="zqu-xb-tgp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wonders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bra-VF-eRn">
+                                <rect key="frame" x="217" y="159" width="167" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="Sa5-9j-8y8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="33"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lL2-cn-IPG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-9" id="EbF-jf-7Sj"/>
-                            <constraint firstItem="lL2-cn-IPG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="jJS-nk-3Lf"/>
+                            <constraint firstItem="zqu-xb-tgp" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="725-TI-6A6"/>
+                            <constraint firstAttribute="trailing" secondItem="zqu-xb-tgp" secondAttribute="trailing" id="7Xw-6z-Yhw"/>
+                            <constraint firstItem="zqu-xb-tgp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="BA1-uT-mfX"/>
+                            <constraint firstItem="zqu-xb-tgp" firstAttribute="centerX" secondItem="Bra-VF-eRn" secondAttribute="centerX" id="QcP-bf-i6N"/>
+                            <constraint firstItem="Bra-VF-eRn" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="139" id="n1u-Iu-4Lo"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Bra-VF-eRn" secondAttribute="bottom" constant="381" id="nyn-Gt-R18"/>
+                            <constraint firstItem="zqu-xb-tgp" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="rTn-oJ-qSG"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,4 +47,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="wonderFront" width="4644" height="3095"/>
+    </resources>
 </document>

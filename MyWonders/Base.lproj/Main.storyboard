@@ -549,7 +549,7 @@
                                 <rect key="frame" x="487" y="494" width="48" height="30"/>
                                 <state key="normal" title="Photos"/>
                                 <connections>
-                                    <segue destination="Brd-IF-aRI" kind="show" id="E77-rU-KU1"/>
+                                    <segue destination="Brd-IF-aRI" kind="show" identifier="editToWonderPhotos" id="E77-rU-KU1"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1k-ly-RnY">
@@ -837,6 +837,6 @@
         <image name="wonderPlace" width="1920" height="1050"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="d30-xb-fLW"/>
+        <segue reference="E77-rU-KU1"/>
     </inferredMetricsTieBreakers>
 </document>
