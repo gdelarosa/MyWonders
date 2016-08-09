@@ -33,6 +33,8 @@
 		51C52F7D1D5061840065728F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C52F7C1D5061840065728F /* PhotosViewController.swift */; };
 		51C52F7F1D507D7D0065728F /* WonderPhototsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C52F7E1D507D7D0065728F /* WonderPhototsTableViewController.swift */; };
 		51E129151D558D9600F1F76F /* EditPhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E129141D558D9600F1F76F /* EditPhotosTableViewController.swift */; };
+		51F1AA3E1D5994E10063CDBF /* SoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F1AA3D1D5994E10063CDBF /* SoundsViewController.swift */; };
+		51F1AA401D599C830063CDBF /* WonderSoundsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F1AA3F1D599C830063CDBF /* WonderSoundsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		51C52F7C1D5061840065728F /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		51C52F7E1D507D7D0065728F /* WonderPhototsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WonderPhototsTableViewController.swift; path = MyWonders/WonderPhototsTableViewController.swift; sourceTree = "<group>"; };
 		51E129141D558D9600F1F76F /* EditPhotosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPhotosTableViewController.swift; sourceTree = "<group>"; };
+		51F1AA3D1D5994E10063CDBF /* SoundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundsViewController.swift; sourceTree = "<group>"; };
+		51F1AA3F1D599C830063CDBF /* WonderSoundsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WonderSoundsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				51E129141D558D9600F1F76F /* EditPhotosTableViewController.swift */,
+				51F1AA3F1D599C830063CDBF /* WonderSoundsTableViewController.swift */,
 				51C52F7E1D507D7D0065728F /* WonderPhototsTableViewController.swift */,
+				51F1AA3D1D5994E10063CDBF /* SoundsViewController.swift */,
 				51C52F7C1D5061840065728F /* PhotosViewController.swift */,
 				514D9B351D4D47F100B10A3A /* WhereAmIViewController.swift */,
 				514D9B371D4D480D00B10A3A /* WondersTableViewController.swift */,
@@ -232,6 +238,7 @@
 				51C52F7D1D5061840065728F /* PhotosViewController.swift in Sources */,
 				514D9B361D4D47F100B10A3A /* WhereAmIViewController.swift in Sources */,
 				514D9B291D4D1B1A00B10A3A /* MyWonders.xcdatamodeld in Sources */,
+				51F1AA401D599C830063CDBF /* WonderSoundsTableViewController.swift in Sources */,
 				514D9B521D4DA80200B10A3A /* ViewWonderViewController.swift in Sources */,
 				514D9B4E1D4D595800B10A3A /* Videos.swift in Sources */,
 				514D9B451D4D595800B10A3A /* Photos+CoreDataProperties.swift in Sources */,
@@ -245,6 +252,7 @@
 				51E129151D558D9600F1F76F /* EditPhotosTableViewController.swift in Sources */,
 				514D9B481D4D595800B10A3A /* Settings.swift in Sources */,
 				514D9B491D4D595800B10A3A /* Sounds+CoreDataProperties.swift in Sources */,
+				51F1AA3E1D5994E10063CDBF /* SoundsViewController.swift in Sources */,
 				514D9B381D4D480D00B10A3A /* WondersTableViewController.swift in Sources */,
 				514D9B461D4D595800B10A3A /* Photos.swift in Sources */,
 				514D9B501D4D640B00B10A3A /* AddWonderViewController.swift in Sources */,
