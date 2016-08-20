@@ -82,7 +82,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    // Prepare for Segue to Photos to pass wonder name value
+    // Prepare for Segue to Photos, Camera, and Sounds to pass wonder name value
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
@@ -98,6 +98,12 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
             let vc = segue.destinationViewController as! PhotosViewController
             vc.photosWonderName = wonderName //the new vc var = this vc var
             vc.photosSourceType = "Camera" //the new vc var = this vc var
+        }
+        
+        if segue.identifier == "addToSounds" {
+            
+            let vc = segue.destinationViewController as! SoundsViewController
+            vc.soundsWonderName = wonderName
         }
 
     

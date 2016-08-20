@@ -37,15 +37,16 @@ class WonderSoundsTableViewController: UITableViewController {
         return 3
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("WonderSoundCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = "Wonder Sound Title"
+        cell.detailTextLabel?.text = "Wonder Sound Subtitle"
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

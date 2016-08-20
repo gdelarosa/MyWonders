@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		514444D51D68E1C7008C0457 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 514444D41D68E1C7008C0457 /* AVKit.framework */; };
 		514D9B211D4D1B1A00B10A3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */; };
 		514D9B261D4D1B1A00B10A3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514D9B241D4D1B1A00B10A3A /* Main.storyboard */; };
 		514D9B291D4D1B1A00B10A3A /* MyWonders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B271D4D1B1A00B10A3A /* MyWonders.xcdatamodeld */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		514444D41D68E1C7008C0457 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		514D9B1D1D4D1B1A00B10A3A /* MyWonders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWonders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyWonders/AppDelegate.swift; sourceTree = "<group>"; };
 		514D9B251D4D1B1A00B10A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,7 +53,7 @@
 		514D9B3B1D4D595800B10A3A /* Photos+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photos+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		514D9B3C1D4D595800B10A3A /* Photos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		514D9B3D1D4D595800B10A3A /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		514D9B3E1D4D595800B10A3A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		514D9B3E1D4D595800B10A3A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = MyWonders/Settings.swift; sourceTree = "<group>"; };
 		514D9B3F1D4D595800B10A3A /* Sounds+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Sounds+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		514D9B401D4D595800B10A3A /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		514D9B411D4D595800B10A3A /* Wonders+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Wonders+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				514444D51D68E1C7008C0457 /* AVKit.framework in Frameworks */,
 				51C52F7B1D5057230065728F /* CoreLocation.framework in Frameworks */,
 				51C52F791D50571B0065728F /* MapKit.framework in Frameworks */,
 			);
@@ -92,6 +95,7 @@
 				514D9B2F1D4D1B1A00B10A3A /* Info.plist */,
 				514D9B271D4D1B1A00B10A3A /* MyWonders.xcdatamodeld */,
 				514D9B2A1D4D1B1A00B10A3A /* Assets.xcassets */,
+				514444D41D68E1C7008C0457 /* AVKit.framework */,
 				51C52F7A1D5057230065728F /* CoreLocation.framework */,
 				51C52F781D50571B0065728F /* MapKit.framework */,
 			);
