@@ -16,8 +16,10 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wonderLatitudeTextField: UITextField!
     @IBOutlet weak var wonderLongitudeTextField: UITextField!
     @IBOutlet weak var wonderTextView: UITextView!
+    
     @IBOutlet weak var photosButtonLabel: UIButton!
     @IBOutlet weak var cameraButtonLabel: UIButton!
+    @IBOutlet weak var soundsButtonLabel: UIButton!
     
     var wonderName:String = "" // It will be empty.
     var wonderLatitude:Double = 0.0
@@ -40,6 +42,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
         self.wonderNameTextField.delegate = self
         photosButtonLabel.alpha = 0
         cameraButtonLabel.alpha = 0
+        soundsButtonLabel.alpha = 0
     }
     
     @IBAction func addSaveButtonAction(sender: AnyObject) { // Need to add this action for Save button.
@@ -69,6 +72,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
             
             photosButtonLabel.alpha = 1
             cameraButtonLabel.alpha = 1
+            soundsButtonLabel.alpha = 1
             
         } catch {
             saveConfirmationLabel.alpha = 1 

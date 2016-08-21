@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import CoreData
+import AVFoundation
 
-class WonderSoundsTableViewController: UITableViewController {
+class WonderSoundsTableViewController: UITableViewController, UINavigationControllerDelegate, AVAudioPlayerDelegate {
+    
+    var wonderSoundsArray: [Sounds] = []
+    var wonderSoundsName: String!
+    
+    var error: NSError? = nil
+    var soundPlayer: AVAudioPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +26,24 @@ class WonderSoundsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        let wonderSoundsAppDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let wondersSoundsContext: NSManagedObjectContext = wonderSoundsAppDel.managedObjectContext
+        let wonderSoundsFetchRequest = NSFetchRequest(entityName: "Sounds")
+        //Create predicate that selects on the "wonderName" property of the core data object
+        wonderSoundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", wonderSoundsName)
+        
+        do {
+            let wonderSoundsFetchResults =
+            try wondersSoundsContext.executeFetchRequest(wonderSoundsFetchRequest) as? [Sounds]
+            
+            wonderSoundsArray = wonderSoundsFetchResults!
+        } catch {
+            print("Could not fetch \(error)")
+        }
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,63 +60,56 @@ class WonderSoundsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return wonderSoundsArray.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("WonderSoundCell", forIndexPath: indexPath)
+        
+        let wonderSound: Sounds = wonderSoundsArray[indexPath.row] as Sounds
 
-        cell.textLabel?.text = "Wonder Sound Title"
-        cell.detailTextLabel?.text = "Wonder Sound Subtitle"
+        cell.textLabel?.text = wonderSound.wonderSoundTitle
+        cell.detailTextLabel?.text = wonderSound.wonderName
 
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let wonderSound: Sounds = wonderSoundsArray[indexPath.row] as Sounds
+        let wonderSoundURL = wonderSound.wonderSoundURL
+        
+        let directoryURL = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).first
+        let audioFileURL = directoryURL!.URLByAppendingPathComponent(wonderSoundURL!)
+        
+        do {
+            soundPlayer = try AVAudioPlayer(contentsOfURL: audioFileURL)
+        } catch let error1 as NSError {
+            error = error1
+        }
+        soundPlayer.play()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            let wonderSoundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let wonderSoundsContext:NSManagedObjectContext = wonderSoundsAppDel.managedObjectContext
+            
+            wonderSoundsContext.deleteObject(wonderSoundsArray[indexPath.row] as Sounds) // Delete from core data
+            
+            var error:NSError?
+            do {
+                try wonderSoundsContext.save()
+            } catch let error1 as NSError {
+                error = error1
+                print("Could not delete \(error), \(error?.userInfo)")
+            }
+            
+            wonderSoundsArray.removeAtIndex(indexPath.row) //Delete from array
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

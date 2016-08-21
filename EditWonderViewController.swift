@@ -18,6 +18,8 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var wonderNotesTextView: UITextView!
     @IBOutlet weak var wonderImageButtonOutlet: UIButton!
     @IBOutlet weak var numberOfPhotosLabel: UILabel!
+    @IBOutlet weak var wonderSoundsButtonOutlet: UIButton!
+    @IBOutlet weak var numberOfSoundsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +50,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
 //        target: self, action: "editSaveButtonAction:")
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         //Get image Data from Core Data
         let photosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let photosContext:NSManagedObjectContext = photosAppDel.managedObjectContext
@@ -81,8 +83,34 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        // Retrieve the sounds entity number of Sounds 
+        //Get sounds from core data.
+        let soundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let soundsContext:NSManagedObjectContext = soundsAppDel.managedObjectContext
         
+        let soundsFetchRequest = NSFetchRequest(entityName:"Sounds")
         
+        //Create a predicate that selects on the "wonderName" property of the Core Data object
+        soundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", editSelectedWonderName)
+        var sounds: [Sounds] = [] // array to get sounds
+        do {
+            let soundsFetchResults = try soundsContext.executeFetchRequest(photosFetchRequest) as? [Sounds]
+            sounds = soundsFetchResults!
+        } catch {
+            print("Could not fetch \(error)")
+        }
+        
+        numberOfSoundsLabel.text = String(sounds.count)
+        
+        if sounds.count == 0 {
+            if let image = UIImage(named: "vol_mute.png") {
+                wonderImageButtonOutlet.setImage(image, forState: .Normal)
+            }
+            } else {
+                if let image = UIImage(named: "vol_loud.png") {
+                    wonderSoundsButtonOutlet.setImage(image, forState: .Normal)
+                }
+            }
     }
     
     @IBAction func editSaveButtonAction(sender:AnyObject) {
@@ -140,6 +168,16 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
             let vc = segue.destinationViewController as! PhotosViewController
             vc.photosWonderName = editSelectedWonderName
             vc.photosSourceType = "Camera"
+        }
+        
+        if segue.identifier == "editToSounds" {
+            let vc = segue.destinationViewController as! SoundsViewController
+            vc.soundsWonderName = editSelectedWonderName
+        }
+        
+        if segue.identifier == "editToWonderSounds" {
+            let vc = segue.destinationViewController as! WonderSoundsTableViewController
+            vc.wonderSoundsName = editSelectedWonderName
         }
 }
     

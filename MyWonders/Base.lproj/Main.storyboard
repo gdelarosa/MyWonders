@@ -455,6 +455,7 @@
                         <outlet property="cameraButtonLabel" destination="0Tk-7Y-WYI" id="CLC-MF-CAh"/>
                         <outlet property="photosButtonLabel" destination="yP6-XV-PC5" id="Uys-e8-Ooc"/>
                         <outlet property="saveConfirmationLabel" destination="Zee-0x-tsJ" id="1ic-9t-9o3"/>
+                        <outlet property="soundsButtonLabel" destination="knv-9p-fjf" id="eK4-8k-dFx"/>
                         <outlet property="wonderLatitudeTextField" destination="6y8-PS-apO" id="lgt-v8-jzU"/>
                         <outlet property="wonderLongitudeTextField" destination="Nlu-nZ-O8c" id="yVd-rn-DnX"/>
                         <outlet property="wonderNameTextField" destination="eCf-tE-SGO" id="kmB-4k-GKZ"/>
@@ -605,11 +606,13 @@
                     </view>
                     <connections>
                         <outlet property="numberOfPhotosLabel" destination="h1x-dv-Jik" id="SJR-cE-aIL"/>
+                        <outlet property="numberofSoundsLabel" destination="cfG-bZ-2gV" id="lob-W8-6aO"/>
                         <outlet property="wonderImageButtonOutlet" destination="jlo-2p-4E5" id="a60-EV-cEg"/>
                         <outlet property="wonderLatitudeLabel" destination="fMd-Fm-slN" id="Hc2-El-GsZ"/>
                         <outlet property="wonderLongitudeLabel" destination="qnK-DP-lrX" id="iDF-jt-dLN"/>
                         <outlet property="wonderMapView" destination="ScL-jX-AsS" id="oap-Ds-lgh"/>
                         <outlet property="wonderNameLabel" destination="jxs-3j-O4h" id="cyc-yl-rTu"/>
+                        <outlet property="wonderSoundButtonOutlet" destination="BeN-2F-sii" id="5bU-tt-acf"/>
                         <outlet property="wonderTextView" destination="RBE-uD-qZ9" id="m31-6X-sSb"/>
                     </connections>
                 </viewController>
@@ -811,11 +814,13 @@
                     <connections>
                         <outlet property="editSaveConfirmationLabel" destination="aVa-ME-fta" id="xo6-Bj-Wri"/>
                         <outlet property="numberOfPhotosLabel" destination="R1k-ly-RnY" id="3uB-Hp-6fM"/>
+                        <outlet property="numberOfSoundsLabel" destination="K2o-hW-dwj" id="AW9-OR-USw"/>
                         <outlet property="wonderImageButtonOutlet" destination="MXO-EL-IgQ" id="V5d-dO-Pne"/>
                         <outlet property="wonderLatitudeTextField" destination="xDP-rw-k1k" id="c0V-Pn-jIN"/>
                         <outlet property="wonderLongitudeTextField" destination="Wkr-z1-qIs" id="u8w-ug-11O"/>
                         <outlet property="wonderNameTextField" destination="FHg-Qh-tRg" id="WOK-Gx-enD"/>
                         <outlet property="wonderNotesTextView" destination="7m8-uS-mC2" id="ghi-V9-giQ"/>
+                        <outlet property="wonderSoundsButtonOutlet" destination="KBU-2A-MTW" id="Cyy-Cy-iQX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Or3-NJ-uDT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1071,8 +1076,8 @@
         <image name="wonderPlace" width="1920" height="1050"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="K3i-yK-0tC"/>
         <segue reference="RGJ-xb-aR3"/>
-        <segue reference="E77-rU-KU1"/>
+        <segue reference="d30-xb-fLW"/>
+        <segue reference="K3i-yK-0tC"/>
     </inferredMetricsTieBreakers>
 </document>

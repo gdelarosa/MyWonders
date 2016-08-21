@@ -20,6 +20,8 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
     @IBOutlet weak var wonderMapView: MKMapView! //Connect Map to Outlet
     @IBOutlet weak var wonderImageButtonOutlet: UIButton!
     @IBOutlet weak var numberOfPhotosLabel: UILabel!
+    @IBOutlet weak var wonderSoundButtonOutlet: UIButton!
+    @IBOutlet weak var numberofSoundsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +60,7 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
         wonderMapView.addAnnotation(wonderAnnotation) 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         //Get image Data from Core Data
         let photosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let photosContext:NSManagedObjectContext = photosAppDel.managedObjectContext
@@ -92,7 +94,41 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
             }
         }
         
+        //Get sounds from Core Data
+        let soundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let soundsContext:NSManagedObjectContext = soundsAppDel.managedObjectContext
+        let soundsFetchRequest = NSFetchRequest(entityName:"Sounds")
         
+        //Create a predicate that selects on the "wonderName" property of the Core Data object
+        soundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", viewSelectedWonderName)
+        var sounds: [Sounds] = [] // array to hold sounds
+        do {
+            let soundsFetchResults = try soundsContext.executeFetchRequest(soundsFetchRequest) as? [Sounds]
+            sounds = soundsFetchResults!
+        } catch {
+            print("Could not fetch \(error)")
+        }
+        
+        numberofSoundsLabel.text = String(sounds.count)
+        
+        if sounds.count == 0 {
+            if let image = UIImage(named: "vol_mute.png") {
+                wonderSoundButtonOutlet.setImage(image, forState: .Normal)
+            }
+            } else {
+                if let image = UIImage(named: "volume_loud.png") {
+                    wonderSoundButtonOutlet.setImage(image, forState: .Normal)
+                }
+            }
+        }
+    
+    //Prepare for segue to pass wonder name value 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewToWonderSounds" {
+            
+            let vc = segue.destinationViewController as! WonderSoundsTableViewController
+            vc.wonderSoundsName = viewSelectedWonderName
+        }
     }
 
     override func didReceiveMemoryWarning() {
