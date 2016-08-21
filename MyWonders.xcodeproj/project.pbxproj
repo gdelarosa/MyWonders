@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		514444D51D68E1C7008C0457 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 514444D41D68E1C7008C0457 /* AVKit.framework */; };
+		514444D71D6966A6008C0457 /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514444D61D6966A6008C0457 /* VideosViewController.swift */; };
 		514D9B211D4D1B1A00B10A3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */; };
 		514D9B261D4D1B1A00B10A3A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 514D9B241D4D1B1A00B10A3A /* Main.storyboard */; };
 		514D9B291D4D1B1A00B10A3A /* MyWonders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 514D9B271D4D1B1A00B10A3A /* MyWonders.xcdatamodeld */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		514444D41D68E1C7008C0457 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		514444D61D6966A6008C0457 /* VideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideosViewController.swift; path = MyWonders/VideosViewController.swift; sourceTree = "<group>"; };
 		514D9B1D1D4D1B1A00B10A3A /* MyWonders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWonders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		514D9B201D4D1B1A00B10A3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = MyWonders/AppDelegate.swift; sourceTree = "<group>"; };
 		514D9B251D4D1B1A00B10A3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				514D9B531D4DBB9000B10A3A /* EditWonderViewController.swift */,
 				514D9B511D4DA80200B10A3A /* ViewWonderViewController.swift */,
 				514D9B4F1D4D640B00B10A3A /* AddWonderViewController.swift */,
+				514444D61D6966A6008C0457 /* VideosViewController.swift */,
 			);
 			name = Controller;
 			path = ..;
@@ -243,6 +246,7 @@
 				514D9B361D4D47F100B10A3A /* WhereAmIViewController.swift in Sources */,
 				514D9B291D4D1B1A00B10A3A /* MyWonders.xcdatamodeld in Sources */,
 				51F1AA401D599C830063CDBF /* WonderSoundsTableViewController.swift in Sources */,
+				514444D71D6966A6008C0457 /* VideosViewController.swift in Sources */,
 				514D9B521D4DA80200B10A3A /* ViewWonderViewController.swift in Sources */,
 				514D9B4E1D4D595800B10A3A /* Videos.swift in Sources */,
 				514D9B451D4D595800B10A3A /* Photos+CoreDataProperties.swift in Sources */,
