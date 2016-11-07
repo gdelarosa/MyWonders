@@ -28,7 +28,7 @@ class WonderPhototsTableViewController: UITableViewController, UINavigationContr
         
         let wonderPhotosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wonderPhotosContext:NSManagedObjectContext = wonderPhotosAppDel.managedObjectContext
-        let wonderPhotosFetchRequest = NSFetchRequest(entityName: "Photos")
+        let wonderPhotosFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photos")
         
         //Create a predicate that selects on the "wonderName" property of the Core Data object 
         wonderPhotosFetchRequest.predicate = NSPredicate(format: "wonderName = %@", viewSelectedWonderName) //select 1 wonder record only 

@@ -59,8 +59,8 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
         let newWonder = NSEntityDescription.insertNewObject(forEntityName: "Wonders", into: wondersContext) as! Wonders // added "as! Wonders" class 
         
         newWonder.wonderName = wonderName
-        newWonder.wonderLatitude = NSNumber(wonderLatitude)
-        newWonder.wonderLongitude = NSNumber(wonderLongitude)
+//        newWonder.wonderLatitude = NSNumber(wonderLatitude))
+//        newWonder.wonderLongitude = NSNumber(wonderLongitude)
         newWonder.wonderShow = true
         newWonder.wonderType = "MY"
         newWonder.wonderNotes = wonderTextView.text 

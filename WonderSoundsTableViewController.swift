@@ -31,7 +31,7 @@ class WonderSoundsTableViewController: UITableViewController, UINavigationContro
     override func viewWillAppear(_ animated: Bool) {
         let wonderSoundsAppDel: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersSoundsContext: NSManagedObjectContext = wonderSoundsAppDel.managedObjectContext
-        let wonderSoundsFetchRequest = NSFetchRequest(entityName: "Sounds")
+        let wonderSoundsFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Sounds")
         //Create predicate that selects on the "wonderName" property of the core data object
         wonderSoundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", wonderSoundsName)
         

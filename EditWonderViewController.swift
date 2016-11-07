@@ -54,7 +54,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         //Get image Data from Core Data
         let photosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let photosContext:NSManagedObjectContext = photosAppDel.managedObjectContext
-        let photosFetchRequest = NSFetchRequest(entityName:"Photos")
+        let photosFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Photos")
         
         //Create a predicate that selects on the "wonderName" property of the Core Data object
         photosFetchRequest.predicate = NSPredicate(format: "wonderName = %@", editSelectedWonderName)
@@ -88,7 +88,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         let soundsAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let soundsContext:NSManagedObjectContext = soundsAppDel.managedObjectContext
         
-        let soundsFetchRequest = NSFetchRequest(entityName:"Sounds")
+        let soundsFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Sounds")
         
         //Create a predicate that selects on the "wonderName" property of the Core Data object
         soundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", editSelectedWonderName)
@@ -119,7 +119,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         
         let wondersAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersContext:NSManagedObjectContext = wondersAppDel.managedObjectContext
-        let wonderFetchRequest = NSFetchRequest(entityName: "Wonders")
+        let wonderFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Wonders")
         do {
             if let wonderFetchedResults = try wondersContext.fetch(wonderFetchRequest) as? [Wonders] {
                 wonders = wonderFetchedResults

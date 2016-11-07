@@ -35,8 +35,8 @@ class WondersTableViewController: UITableViewController {
         
         let wondersAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersContext:NSManagedObjectContext = wondersAppDel.managedObjectContext
-        let wonderFetchRequest = NSFetchRequest(entityName: "Wonders")
-        wonderFetchRequest.predicate = NSPredicate(format: "wonderShow = %@", true)
+        let wonderFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Wonders")
+        wonderFetchRequest.predicate = NSPredicate(format: "wonderShow = %@", true as CVarArg)
         let sortDescriptor = NSSortDescriptor(key: "wonderName", ascending: true)
         wonderFetchRequest.sortDescriptors = [sortDescriptor]
         

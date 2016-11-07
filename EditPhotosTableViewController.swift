@@ -11,7 +11,7 @@ import CoreData
 
 let wonderPhotosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 let wonderPhotosContext:NSManagedObjectContext = wonderPhotosAppDel.managedObjectContext
-let wonderPhotosFetchRequest = NSFetchRequest(entityName: "Photos")
+let wonderPhotosFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photos")
 
 class EditPhotosTableViewController: UITableViewController, UINavigationControllerDelegate {
         
