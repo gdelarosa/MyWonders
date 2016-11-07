@@ -39,7 +39,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         
         editSaveConfirmationLabel.alpha = 0 // Save confirmation label invisible at launch of view
         
-        let saveRightBarButton = UIBarButtonSystemItem.Save
+        let saveRightBarButton = UIBarButtonSystemItem.save
         navigationItem.rightBarButtonItem = UIBarButtonItem( //Programatically adds a save button on the right side of the screen.
             barButtonSystemItem: saveRightBarButton,
             target: self, action: #selector(EditWonderViewController.editSaveButtonAction(_:)))
@@ -50,9 +50,9 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
 //        target: self, action: "editSaveButtonAction:")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //Get image Data from Core Data
-        let photosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let photosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let photosContext:NSManagedObjectContext = photosAppDel.managedObjectContext
         let photosFetchRequest = NSFetchRequest(entityName:"Photos")
         
@@ -60,7 +60,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         photosFetchRequest.predicate = NSPredicate(format: "wonderName = %@", editSelectedWonderName)
         var photos: [Photos] = [] // array to hold 1 wonder photos
         do {
-            let photosFetchResults = try photosContext.executeFetchRequest(photosFetchRequest) as? [Photos]
+            let photosFetchResults = try photosContext.fetch(photosFetchRequest) as? [Photos]
             photos = photosFetchResults!
         } catch {
             print("Could not fetch \(error)")
@@ -70,22 +70,22 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         
         if photos.count == 0 {
             if let image = UIImage(named: "photo_default") {
-                wonderImageButtonOutlet.setImage(image, forState: .Normal)
+                wonderImageButtonOutlet.setImage(image, for: UIControlState())
             }
         } else {
             let photo: Photos = photos[0] // get the 1st photo image
             
-            if let thumbnail = UIImage(data: photo.wonderPhoto!) {
-                wonderImageButtonOutlet.setImage(thumbnail, forState: .Normal)
+            if let thumbnail = UIImage(data: photo.wonderPhoto! as Data) {
+                wonderImageButtonOutlet.setImage(thumbnail, for: UIControlState())
             } else {
                 if let image = UIImage(named: "photo_default") {
-                    wonderImageButtonOutlet.setImage(image, forState: .Normal)
+                    wonderImageButtonOutlet.setImage(image, for: UIControlState())
                 }
             }
         }
         // Retrieve the sounds entity number of Sounds 
         //Get sounds from core data.
-        let soundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let soundsAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let soundsContext:NSManagedObjectContext = soundsAppDel.managedObjectContext
         
         let soundsFetchRequest = NSFetchRequest(entityName:"Sounds")
@@ -94,7 +94,7 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         soundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", editSelectedWonderName)
         var sounds: [Sounds] = [] // array to get sounds
         do {
-            let soundsFetchResults = try soundsContext.executeFetchRequest(photosFetchRequest) as? [Sounds]
+            let soundsFetchResults = try soundsContext.fetch(photosFetchRequest) as? [Sounds]
             sounds = soundsFetchResults!
         } catch {
             print("Could not fetch \(error)")
@@ -104,24 +104,24 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
         
         if sounds.count == 0 {
             if let image = UIImage(named: "vol_mute.png") {
-                wonderImageButtonOutlet.setImage(image, forState: .Normal)
+                wonderImageButtonOutlet.setImage(image, for: UIControlState())
             }
             } else {
                 if let image = UIImage(named: "vol_loud.png") {
-                    wonderSoundsButtonOutlet.setImage(image, forState: .Normal)
+                    wonderSoundsButtonOutlet.setImage(image, for: UIControlState())
                 }
             }
     }
     
-    @IBAction func editSaveButtonAction(sender:AnyObject) {
+    @IBAction func editSaveButtonAction(_ sender:AnyObject) {
         
         var wonders = [Wonders]()
         
-        let wondersAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let wondersAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersContext:NSManagedObjectContext = wondersAppDel.managedObjectContext
         let wonderFetchRequest = NSFetchRequest(entityName: "Wonders")
         do {
-            if let wonderFetchedResults = try wondersContext.executeFetchRequest(wonderFetchRequest) as? [Wonders] {
+            if let wonderFetchedResults = try wondersContext.fetch(wonderFetchRequest) as? [Wonders] {
                 wonders = wonderFetchedResults
           } else {
             print("ELSE if let results = try... FAILED")
@@ -133,8 +133,8 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
     let wonder = wonders[editSelectedRow]
         
     wonder.wonderName = wonderNameTextField.text!
-    wonder.wonderLatitude = Double(wonderLatitudeTextField.text!) ?? 0.0
-    wonder.wonderLongitude = Double(wonderLongitudeTextField.text!) ?? 0.0
+    wonder.wonderLatitude = Double(wonderLatitudeTextField.text!) as NSNumber? ?? 0.0
+    wonder.wonderLongitude = Double(wonderLongitudeTextField.text!) as NSNumber? ?? 0.0
     wonder.wonderNotes = wonderNotesTextView.text
     
         do {
@@ -154,40 +154,40 @@ class EditWonderViewController: UIViewController, UITextFieldDelegate {
     }
     
     //Prepare for Segue to Photos to pass wonder name value. 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if segue.identifier == "editToWonderPhotos" { // Allow edit from Photo
             
-            let vc = segue.destinationViewController as! PhotosViewController
+            let vc = segue.destination as! PhotosViewController
             vc.photosWonderName = editSelectedWonderName
             vc.photosSourceType = "Photos"
         }
         
         if segue.identifier == "editToCamera" { // Allows edit from Camera.
             
-            let vc = segue.destinationViewController as! PhotosViewController
+            let vc = segue.destination as! PhotosViewController
             vc.photosWonderName = editSelectedWonderName
             vc.photosSourceType = "Camera"
         }
         
         if segue.identifier == "editToSounds" {
-            let vc = segue.destinationViewController as! SoundsViewController
+            let vc = segue.destination as! SoundsViewController
             vc.soundsWonderName = editSelectedWonderName
         }
         
         if segue.identifier == "editToWonderSounds" {
-            let vc = segue.destinationViewController as! WonderSoundsTableViewController
+            let vc = segue.destination as! WonderSoundsTableViewController
             vc.wonderSoundsName = editSelectedWonderName
         }
 }
     
     // Keyboard Control
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         wonderNameTextField.resignFirstResponder()
         return false;
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     

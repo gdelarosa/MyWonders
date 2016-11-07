@@ -60,9 +60,9 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
         wonderMapView.addAnnotation(wonderAnnotation) 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //Get image Data from Core Data
-        let photosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let photosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let photosContext:NSManagedObjectContext = photosAppDel.managedObjectContext
         let photosFetchRequest = NSFetchRequest(entityName:"Photos")
         
@@ -70,7 +70,7 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
         photosFetchRequest.predicate = NSPredicate(format: "wonderName = %@", viewSelectedWonderName)
         var photos: [Photos] = [] // array to hold 1 wonder photos 
         do {
-            let photosFetchResults = try photosContext.executeFetchRequest(photosFetchRequest) as? [Photos]
+            let photosFetchResults = try photosContext.fetch(photosFetchRequest) as? [Photos]
             photos = photosFetchResults!
         } catch {
             print("Could not fetch \(error)")
@@ -80,22 +80,22 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         if photos.count == 0 {
             if let image = UIImage(named: "photo_default") {
-                wonderImageButtonOutlet.setImage(image, forState: .Normal)
+                wonderImageButtonOutlet.setImage(image, for: UIControlState())
             }
         } else {
             let photo: Photos = photos[0] // get the 1st photo image
             
-            if let thumbnail = UIImage(data: photo.wonderPhoto!) {
-                wonderImageButtonOutlet.setImage(thumbnail, forState: .Normal)
+            if let thumbnail = UIImage(data: photo.wonderPhoto! as Data) {
+                wonderImageButtonOutlet.setImage(thumbnail, for: UIControlState())
             } else {  
                 if let image = UIImage(named: "photo_default") {
-                    wonderImageButtonOutlet.setImage(image, forState: .Normal)
+                    wonderImageButtonOutlet.setImage(image, for: UIControlState())
                 }
             }
         }
         
         //Get sounds from Core Data
-        let soundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let soundsAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let soundsContext:NSManagedObjectContext = soundsAppDel.managedObjectContext
         let soundsFetchRequest = NSFetchRequest(entityName:"Sounds")
         
@@ -103,7 +103,7 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
         soundsFetchRequest.predicate = NSPredicate(format: "wonderName = %@", viewSelectedWonderName)
         var sounds: [Sounds] = [] // array to hold sounds
         do {
-            let soundsFetchResults = try soundsContext.executeFetchRequest(soundsFetchRequest) as? [Sounds]
+            let soundsFetchResults = try soundsContext.fetch(soundsFetchRequest) as? [Sounds]
             sounds = soundsFetchResults!
         } catch {
             print("Could not fetch \(error)")
@@ -113,20 +113,20 @@ class ViewWonderViewController: UIViewController, MKMapViewDelegate, CLLocationM
         
         if sounds.count == 0 {
             if let image = UIImage(named: "vol_mute.png") {
-                wonderSoundButtonOutlet.setImage(image, forState: .Normal)
+                wonderSoundButtonOutlet.setImage(image, for: UIControlState())
             }
             } else {
                 if let image = UIImage(named: "volume_loud.png") {
-                    wonderSoundButtonOutlet.setImage(image, forState: .Normal)
+                    wonderSoundButtonOutlet.setImage(image, for: UIControlState())
                 }
             }
         }
     
     //Prepare for segue to pass wonder name value 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewToWonderSounds" {
             
-            let vc = segue.destinationViewController as! WonderSoundsTableViewController
+            let vc = segue.destination as! WonderSoundsTableViewController
             vc.wonderSoundsName = viewSelectedWonderName
         }
     }

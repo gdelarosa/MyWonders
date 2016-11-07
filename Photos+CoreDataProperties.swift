@@ -15,6 +15,6 @@ import CoreData
 extension Photos {
 
     @NSManaged var wonderName: String?
-    @NSManaged var wonderPhoto: NSData?
+    @NSManaged var wonderPhoto: Data?
 
 }

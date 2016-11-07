@@ -28,8 +28,8 @@ class WonderSoundsTableViewController: UITableViewController, UINavigationContro
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let wonderSoundsAppDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    override func viewWillAppear(_ animated: Bool) {
+        let wonderSoundsAppDel: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersSoundsContext: NSManagedObjectContext = wonderSoundsAppDel.managedObjectContext
         let wonderSoundsFetchRequest = NSFetchRequest(entityName: "Sounds")
         //Create predicate that selects on the "wonderName" property of the core data object
@@ -37,7 +37,7 @@ class WonderSoundsTableViewController: UITableViewController, UINavigationContro
         
         do {
             let wonderSoundsFetchResults =
-            try wondersSoundsContext.executeFetchRequest(wonderSoundsFetchRequest) as? [Sounds]
+            try wondersSoundsContext.fetch(wonderSoundsFetchRequest) as? [Sounds]
             
             wonderSoundsArray = wonderSoundsFetchResults!
         } catch {
@@ -53,21 +53,21 @@ class WonderSoundsTableViewController: UITableViewController, UINavigationContro
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return wonderSoundsArray.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("WonderSoundCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WonderSoundCell", for: indexPath)
         
-        let wonderSound: Sounds = wonderSoundsArray[indexPath.row] as Sounds
+        let wonderSound: Sounds = wonderSoundsArray[(indexPath as NSIndexPath).row] as Sounds
 
         cell.textLabel?.text = wonderSound.wonderSoundTitle
         cell.detailTextLabel?.text = wonderSound.wonderName
@@ -75,28 +75,28 @@ class WonderSoundsTableViewController: UITableViewController, UINavigationContro
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let wonderSound: Sounds = wonderSoundsArray[indexPath.row] as Sounds
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let wonderSound: Sounds = wonderSoundsArray[(indexPath as NSIndexPath).row] as Sounds
         let wonderSoundURL = wonderSound.wonderSoundURL
         
-        let directoryURL = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).first
-        let audioFileURL = directoryURL!.URLByAppendingPathComponent(wonderSoundURL!)
+        let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first
+        let audioFileURL = directoryURL!.appendingPathComponent(wonderSoundURL!)
         
         do {
-            soundPlayer = try AVAudioPlayer(contentsOfURL: audioFileURL)
+            soundPlayer = try AVAudioPlayer(contentsOf: audioFileURL)
         } catch let error1 as NSError {
             error = error1
         }
         soundPlayer.play()
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            let wonderSoundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let wonderSoundsAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
             let wonderSoundsContext:NSManagedObjectContext = wonderSoundsAppDel.managedObjectContext
             
-            wonderSoundsContext.deleteObject(wonderSoundsArray[indexPath.row] as Sounds) // Delete from core data
+            wonderSoundsContext.delete(wonderSoundsArray[(indexPath as NSIndexPath).row] as Sounds) // Delete from core data
             
             var error:NSError?
             do {
@@ -106,9 +106,9 @@ class WonderSoundsTableViewController: UITableViewController, UINavigationContro
                 print("Could not delete \(error), \(error?.userInfo)")
             }
             
-            wonderSoundsArray.removeAtIndex(indexPath.row) //Delete from array
+            wonderSoundsArray.remove(at: (indexPath as NSIndexPath).row) //Delete from array
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 

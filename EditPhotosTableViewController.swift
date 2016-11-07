@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let wonderPhotosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+let wonderPhotosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 let wonderPhotosContext:NSManagedObjectContext = wonderPhotosAppDel.managedObjectContext
 let wonderPhotosFetchRequest = NSFetchRequest(entityName: "Photos")
 
@@ -24,17 +24,17 @@ class EditPhotosTableViewController: UITableViewController, UINavigationControll
         // self.clearsSelectionOnViewWillAppear = false
 
         // Display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         
         //Create a predicate that selects on the "wonderName" property of the Core Data object
         wonderPhotosFetchRequest.predicate = NSPredicate(format: "wonderName = %@", editSelectedWonderName) //select 1 wonder record only
         
         do {
-            let wonderPhotosFetchResults = try wonderPhotosContext.executeFetchRequest(wonderPhotosFetchRequest) as? [Photos]
+            let wonderPhotosFetchResults = try wonderPhotosContext.fetch(wonderPhotosFetchRequest) as? [Photos]
             wonderPhotosArray = wonderPhotosFetchResults!
         } catch {
             print("Could not fetch \(error)")
@@ -51,22 +51,22 @@ class EditPhotosTableViewController: UITableViewController, UINavigationControll
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return wonderPhotosArray.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("EditPhotoCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EditPhotoCell", for: indexPath)
 
-        let wonderPhoto: Photos = wonderPhotosArray[indexPath.row]
-        let wonderPhotoImage = UIImage(data: wonderPhoto.wonderPhoto! as NSData)
+        let wonderPhoto: Photos = wonderPhotosArray[(indexPath as NSIndexPath).row]
+        let wonderPhotoImage = UIImage(data: wonderPhoto.wonderPhoto! as Data)
         
 
         if let wonderPhotoImageView = cell.viewWithTag(100) as? UIImageView {
@@ -87,9 +87,9 @@ class EditPhotosTableViewController: UITableViewController, UINavigationControll
     */
 
    
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            wonderPhotosContext.deleteObject(wonderPhotosArray[indexPath.row] as Photos) //delete from Core Data
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            wonderPhotosContext.delete(wonderPhotosArray[(indexPath as NSIndexPath).row] as Photos) //delete from Core Data
             var error: NSError?
             do {
                 try wonderPhotosContext.save()

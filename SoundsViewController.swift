@@ -28,12 +28,12 @@ class SoundsViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     @IBOutlet weak var soundPlayStatus: UIButton!
     
     
-    @IBAction func soundSaveButton(sender: UIBarButtonItem) {
+    @IBAction func soundSaveButton(_ sender: UIBarButtonItem) {
         
-        let wonderSoundsAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let wonderSoundsAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wonderSoundsContext:NSManagedObjectContext = wonderSoundsAppDel.managedObjectContext
         
-        let sound = NSEntityDescription.insertNewObjectForEntityForName("Sounds", inManagedObjectContext: wonderSoundsContext) as! Sounds
+        let sound = NSEntityDescription.insertNewObject(forEntityName: "Sounds", into: wonderSoundsContext) as! Sounds
         
         sound.wonderName = soundsWonderName
         sound.wonderSoundURL = soundURL
@@ -53,17 +53,17 @@ class SoundsViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         
     }
     
-    @IBAction func recordButton(sender: UIButton) {
+    @IBAction func recordButton(_ sender: UIButton) {
         //Stop the audio player before recording
         if let player = audioPlayer {
-            if player.playing {
+            if player.isPlaying {
                 player.stop()
-                soundPlayStatus.selected = false
+                soundPlayStatus.isSelected = false
             }
         }
         //Setup Audio Session
         if let recorder = audioRecorder {
-            if !recorder.recording {
+            if !recorder.isRecording {
                 let audioSession = AVAudioSession.sharedInstance()
                 
                 do {
@@ -75,33 +75,33 @@ class SoundsViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
                 recorder.record()
                 
                 soundStatusLabel.text = "Recording.."
-                soundStopStatus.enabled = true
-                soundRecordStatus.selected = true
+                soundStopStatus.isEnabled = true
+                soundRecordStatus.isSelected = true
             }
             
             else {
                 // Pause recording
                 recorder.pause()
                 soundStatusLabel.text = "Paused"
-                soundStopStatus.enabled = false
-                soundPlayStatus.enabled = false
-                soundRecordStatus.enabled = false
+                soundStopStatus.isEnabled = false
+                soundPlayStatus.isEnabled = false
+                soundRecordStatus.isEnabled = false
             }
         }
     }
     
-    @IBAction func stopButton(sender: UIButton) {
+    @IBAction func stopButton(_ sender: UIButton) {
         soundStatusLabel.text = "Stopped"
-        soundPlayStatus.enabled = true
-        soundStopStatus.enabled = false
-        soundRecordStatus.enabled = true
+        soundPlayStatus.isEnabled = true
+        soundStopStatus.isEnabled = false
+        soundRecordStatus.isEnabled = true
         
-        soundRecordStatus.selected = false
-        soundPlayStatus.selected = false
+        soundRecordStatus.isSelected = false
+        soundPlayStatus.isSelected = false
        
         //Stop Recorder
         if let recorder = audioRecorder {
-            if recorder.recording {
+            if recorder.isRecording {
             audioRecorder?.stop()
             
             let audioSession = AVAudioSession.sharedInstance()
@@ -114,24 +114,24 @@ class SoundsViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
     }
     //Stop audio player if playing
     if let player = audioPlayer {
-        if player.playing {
+        if player.isPlaying {
             player.stop()
         }
     }
 }
     
-    @IBAction func playButton(sender: UIButton) {
+    @IBAction func playButton(_ sender: UIButton) {
         
         if let recorder = audioRecorder {
-            if !recorder.recording {
-                audioPlayer = try? AVAudioPlayer(contentsOfURL: recorder.url)
+            if !recorder.isRecording {
+                audioPlayer = try? AVAudioPlayer(contentsOf: recorder.url)
                 audioPlayer?.delegate = self
                 audioPlayer?.play()
                 
                 soundStatusLabel.text = "Playing.."
-                soundStopStatus.enabled = true
-                soundRecordStatus.enabled = false
-                soundPlayStatus.selected = true
+                soundStopStatus.isEnabled = true
+                soundRecordStatus.isEnabled = false
+                soundPlayStatus.isSelected = true
             }
         }
         
@@ -144,15 +144,15 @@ class SoundsViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         soundSaveConfirmLabel.alpha = 0 // Hides the label 
         
         //Disable stop/play button when application launches
-        soundStopStatus.enabled = false
-        soundPlayStatus.enabled = false
+        soundStopStatus.isEnabled = false
+        soundPlayStatus.isEnabled = false
         
         self.soundTitleTextField.delegate = self
         setupRecorder()
     }
     
     // Keyboard Control
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         soundTitleTextField.resignFirstResponder()
         return false;
     }
@@ -162,54 +162,54 @@ class SoundsViewController: UIViewController, AVAudioRecorderDelegate, AVAudioPl
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true);
     }
     
     //Completion of recording 
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             soundStatusLabel.text = "Audio Recording Completed!"
-            soundRecordStatus.enabled = true
-            soundPlayStatus.enabled = true
-            soundStopStatus.enabled = true
+            soundRecordStatus.isEnabled = true
+            soundPlayStatus.isEnabled = true
+            soundStopStatus.isEnabled = true
         }
     }
     
     // Completion of Playing 
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         soundStatusLabel.text = "Audio Playing Completed!"
-        soundRecordStatus.enabled = true
-        soundPlayStatus.enabled = false
-        soundStopStatus.enabled = false
+        soundRecordStatus.isEnabled = true
+        soundPlayStatus.isEnabled = false
+        soundStopStatus.isEnabled = false
     }
         
         func setupRecorder() {
             //Set the audio file
             
-            let directoryURL = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask).first
+            let directoryURL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first
             
-            let audioFileName = NSUUID().UUIDString + ".m4a"
-            let audioFileURL = directoryURL!.URLByAppendingPathComponent(audioFileName)
+            let audioFileName = UUID().uuidString + ".m4a"
+            let audioFileURL = directoryURL!.appendingPathComponent(audioFileName)
             soundURL = audioFileName //Sound URL stored in Core Data
             
             //Setup audio session
             
             let audioSession = AVAudioSession.sharedInstance()
             do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: AVAudioSessionCategoryOptions.DefaultToSpeaker)
+                try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.defaultToSpeaker)
             } catch _ {
             }
             
-            let recorderSetting = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC),
+            let recorderSetting = [AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC as UInt32),
                                    AVSampleRateKey: 44100.0,
                                    AVNumberOfChannelsKey: 2]
             
             //Initiate and prepare the recorder
             
-            audioRecorder = try? AVAudioRecorder(URL: audioFileURL, settings: recorderSetting)
+            audioRecorder = try? AVAudioRecorder(url: audioFileURL, settings: recorderSetting)
             audioRecorder?.delegate = self
-            audioRecorder?.meteringEnabled = true
+            audioRecorder?.isMeteringEnabled = true
             audioRecorder?.prepareToRecord()
             
             soundStatusLabel.text = "Ready to Record. Touch Microphone!"

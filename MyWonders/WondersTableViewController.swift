@@ -28,12 +28,12 @@ class WondersTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = self.editButtonItem() // EDIT BUTTON
+        self.navigationItem.leftBarButtonItem = self.editButtonItem // EDIT BUTTON
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        let wondersAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let wondersAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersContext:NSManagedObjectContext = wondersAppDel.managedObjectContext
         let wonderFetchRequest = NSFetchRequest(entityName: "Wonders")
         wonderFetchRequest.predicate = NSPredicate(format: "wonderShow = %@", true)
@@ -41,7 +41,7 @@ class WondersTableViewController: UITableViewController {
         wonderFetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
-            if let wonderFetchedResults = try wondersContext.executeFetchRequest(wonderFetchRequest) as? [Wonders] {
+            if let wonderFetchedResults = try wondersContext.fetch(wonderFetchRequest) as? [Wonders] {
                 wonders = wonderFetchedResults
             } else {
                 print("ELSE if let results = try...Failed")
@@ -60,23 +60,23 @@ class WondersTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return wonders.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("WondersCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WondersCell", for: indexPath)
 
         // Configure the cell...
         
-        let wonder = wonders[indexPath.row]
+        let wonder = wonders[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = wonder.wonderName
         
         let cellLatitudeDouble:Double = wonder.wonderLatitude as Double!
@@ -90,14 +90,14 @@ class WondersTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             
-            let wondersAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let wondersAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
             let wondersContext:NSManagedObjectContext = wondersAppDel.managedObjectContext
             
-            wondersContext.deleteObject(wonders[indexPath.row] as Wonders) // Delete from Core Data
+            wondersContext.delete(wonders[(indexPath as NSIndexPath).row] as Wonders) // Delete from Core Data
             
             do {
                 try wondersContext.save()
@@ -105,15 +105,15 @@ class WondersTableViewController: UITableViewController {
                 print("Could not delete \(error)")
             }
             
-            wonders.removeAtIndex(indexPath.row) // Delete from Array of Wonders
+            wonders.remove(at: (indexPath as NSIndexPath).row) // Delete from Array of Wonders
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let wonder = wonders[indexPath.row]
+        let wonder = wonders[(indexPath as NSIndexPath).row]
         viewSelectedWonderName = wonder.wonderName
         viewSelectedWonderLatitude = wonder.wonderLatitude as Double
         viewSelectedWonderLongitude = wonder.wonderLongitude as Double
@@ -121,10 +121,10 @@ class WondersTableViewController: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         
-        let wonder = wonders[indexPath.row]
-        editSelectedRow = indexPath.row
+        let wonder = wonders[(indexPath as NSIndexPath).row]
+        editSelectedRow = (indexPath as NSIndexPath).row
         editSelectedWonderName = wonder.wonderName
         editSelectedWonderLatitude = wonder.wonderLatitude as Double
         editSelectedWonderLongitude = wonder.wonderLongitude as Double

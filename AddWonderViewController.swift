@@ -30,7 +30,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let saveRightBarButton = UIBarButtonSystemItem.Save
+        let saveRightBarButton = UIBarButtonSystemItem.save
         
         navigationItem.rightBarButtonItem = UIBarButtonItem( //Programatically adds a save button on the right side of the screen.
         barButtonSystemItem: saveRightBarButton,
@@ -45,7 +45,7 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
         soundsButtonLabel.alpha = 0
     }
     
-    @IBAction func addSaveButtonAction(sender: AnyObject) { // Need to add this action for Save button.
+    @IBAction func addSaveButtonAction(_ sender: AnyObject) { // Need to add this action for Save button.
         
         wonderName = wonderNameTextField.text!
         wonderLatitude = Double(wonderLatitudeTextField.text!) ?? 0.0
@@ -54,13 +54,13 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
         
         //Code below will save the wonder record to Core Data// 
         
-        let wondersAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let wondersAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wondersContext:NSManagedObjectContext = wondersAppDel.managedObjectContext
-        let newWonder = NSEntityDescription.insertNewObjectForEntityForName("Wonders", inManagedObjectContext: wondersContext) as! Wonders // added "as! Wonders" class 
+        let newWonder = NSEntityDescription.insertNewObject(forEntityName: "Wonders", into: wondersContext) as! Wonders // added "as! Wonders" class 
         
         newWonder.wonderName = wonderName
-        newWonder.wonderLatitude = wonderLatitude
-        newWonder.wonderLongitude = wonderLongitude
+        newWonder.wonderLatitude = NSNumber(wonderLatitude)
+        newWonder.wonderLongitude = NSNumber(wonderLongitude)
         newWonder.wonderShow = true
         newWonder.wonderType = "MY"
         newWonder.wonderNotes = wonderTextView.text 
@@ -88,25 +88,25 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
     
     // Prepare for Segue to Photos, Camera, and Sounds to pass wonder name value
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if segue.identifier == "addToPhotos" {
             
-            let vc = segue.destinationViewController as! PhotosViewController
+            let vc = segue.destination as! PhotosViewController
             vc.photosWonderName = wonderName //the new vc var = this vc var
             vc.photosSourceType = "Photos" //the new vc var = this vc var
         }
         
         if segue.identifier == "addToCamera" {
             
-            let vc = segue.destinationViewController as! PhotosViewController
+            let vc = segue.destination as! PhotosViewController
             vc.photosWonderName = wonderName //the new vc var = this vc var
             vc.photosSourceType = "Camera" //the new vc var = this vc var
         }
         
         if segue.identifier == "addToSounds" {
             
-            let vc = segue.destinationViewController as! SoundsViewController
+            let vc = segue.destination as! SoundsViewController
             vc.soundsWonderName = wonderName
         }
 
@@ -114,12 +114,12 @@ class AddWonderViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Keyboard Control 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         wonderNameTextField.resignFirstResponder()
         return false;
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 

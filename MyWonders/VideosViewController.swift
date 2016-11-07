@@ -11,6 +11,26 @@ import CoreData
 import MobileCoreServices
 import AssetsLibrary
 import MediaPlayer
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class VideosViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
@@ -29,14 +49,14 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet weak var addVideosNoLabel: UILabel!
     @IBOutlet weak var addVideoYesLabel: UILabel!
     
-    @IBAction func recordVideoButton(sender: UIButton) {
+    @IBAction func recordVideoButton(_ sender: UIButton) {
         
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            videoController.sourceType = .Camera
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            videoController.sourceType = .camera
             videoController.mediaTypes = [kUTTypeMovie as String]
             videoController.delegate = self
             
-            presentViewController(videoController, animated: true, completion: nil)
+            present(videoController, animated: true, completion: nil)
         }
         else {
             noCamera()
@@ -45,35 +65,35 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
     
     func noCamera() {
     
-        let alertVC = UIAlertController(title: "No Camera!", message: "Device does not have Camera", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let alertVC = UIAlertController(title: "No Camera!", message: "Device does not have Camera", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertVC.addAction(okAction)
-        presentViewController(alertVC, animated: true, completion: nil)
+        present(alertVC, animated: true, completion: nil)
 }
     
-    @IBAction func viewLibraryButton(sender: UIButton) {
+    @IBAction func viewLibraryButton(_ sender: UIButton) {
         
-        videoController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        videoController.sourceType = UIImagePickerControllerSourceType.photoLibrary
         videoController.mediaTypes = [kUTTypeMovie as String]
         videoController.delegate = self
         
-        presentViewController(videoController, animated: true, completion: nil)
+        present(videoController, animated: true, completion: nil)
     }
     
    
-    @IBAction func playVideoButton(sender: UIButton) {
+    @IBAction func playVideoButton(_ sender: UIButton) {
         playVideo()
         
     }
     
     func playVideo() {
         if videoURLText != nil {
-            if let url = NSURL(string: self.videoURLText!) {
+            if let url = URL(string: self.videoURLText!) {
                 moviePlayer = MPMoviePlayerController(contentURL: url)
                 if let player = moviePlayer {
                     player.view.frame = self.view.bounds //fits whole screen
-                    player.controlStyle = MPMovieControlStyle.Fullscreen
-                    player.scalingMode = .AspectFit
+                    player.controlStyle = MPMovieControlStyle.fullscreen
+                    player.scalingMode = .aspectFit
                     
                     player.prepareToPlay()
                     player.play()
@@ -86,17 +106,17 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
-    @IBAction func addVideoSwitchAction(sender: UISwitch) {
+    @IBAction func addVideoSwitchAction(_ sender: UISwitch) {
         
-        let videosAppDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let videosAppDel: AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let videosContext: NSManagedObjectContext = videosAppDel.managedObjectContext
-        let videosEntity = NSEntityDescription.entityForName("Videos", inManagedObjectContext: videosContext)
+        let videosEntity = NSEntityDescription.entity(forEntityName: "Videos", in: videosContext)
         
-        let videoURL = NSURL(string: self.videoURLText!)
+        let videoURL = URL(string: self.videoURLText!)
         let videoURLString = videoURL!.absoluteString
         // if ON, Store video in Videos CoreData, else delete from Core data (if exists)
-        if addVideosSwitchOutlet.on {
-          let newVideo = NSManagedObject(entity: videosEntity!, insertIntoManagedObjectContext: videosContext) as! Videos
+        if addVideosSwitchOutlet.isOn {
+          let newVideo = NSManagedObject(entity: videosEntity!, insertInto: videosContext) as! Videos
             newVideo.wonderName = videosWonderName
             newVideo.wonderVideoURL = videoURLString
             do {
@@ -107,7 +127,7 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
             } catch _ {
             }
             addVideoToLabel.text = videosWonderName
-            addVideoToLabel.textColor = UIColor.blueColor()
+            addVideoToLabel.textColor = UIColor.blue
         }
         
         else {
@@ -116,16 +136,16 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
             requestVideoDelete.predicate = NSPredicate(format: "wonderName = %@", videosWonderName)
             requestVideoDelete.predicate = NSPredicate(format: "wonderVideoURL = %@", videoURLString)
             
-            let videoRecordsToDelete = try? videosContext.executeFetchRequest(requestVideoDelete)
+            let videoRecordsToDelete = try? videosContext.fetch(requestVideoDelete)
             
             if videoRecordsToDelete?.count > 0 {
                 for videoRecordsToDelete: AnyObject in videoRecordsToDelete! {
-                    videosContext.deleteObject(videoRecordsToDelete as! Videos)
+                    videosContext.delete(videoRecordsToDelete as! Videos)
                 }
             }
             do {
                 try videosContext.save()
-                addVideoConfirmationLabel.textColor = UIColor.redColor()
+                addVideoConfirmationLabel.textColor = UIColor.red
                 addVideoConfirmationLabel.text = "Removed Video of: " + videosWonderName
             } catch _ {
             }
@@ -147,15 +167,15 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
         super.didReceiveMemoryWarning()
         
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
-        let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        let mediaType:AnyObject? = info[UIImagePickerControllerMediaType] as AnyObject?
         if let type:AnyObject = mediaType {
             if type is String {
                 let stringType = type as! String
                 if stringType == kUTTypeMovie as String {
-                    let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
+                    let urlOfVideo = info[UIImagePickerControllerMediaURL] as? URL
                     if let url = urlOfVideo {
-                        assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(url, completionBlock: {(url: NSURL!, error: NSError!) in
+                        assetsLibrary.writeVideoAtPath(toSavedPhotosAlbum: url, completionBlock: {(url: URL!, error: NSError!) in
                             if let theError = error{
                                 print("Error saving video= \(theError)")
                             }
@@ -164,14 +184,14 @@ class VideosViewController: UIViewController, UINavigationControllerDelegate, UI
                                 let urlString = url.absoluteString
                                 self.videoURLText = urlString
                                 self.addVideoURL.text = "Save Video for " + self.videosWonderName + "?"
-                                self.addVideoURL.textColor = UIColor.blueColor()
+                                self.addVideoURL.textColor = UIColor.blue
                             }
                     })
                 }
             }
         }
     }
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
         
         addVideoToLabel.alpha = 1
         addVideoURL.alpha = 1

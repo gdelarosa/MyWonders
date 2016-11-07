@@ -24,9 +24,9 @@ class WonderPhototsTableViewController: UITableViewController, UINavigationContr
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        let wonderPhotosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let wonderPhotosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
         let wonderPhotosContext:NSManagedObjectContext = wonderPhotosAppDel.managedObjectContext
         let wonderPhotosFetchRequest = NSFetchRequest(entityName: "Photos")
         
@@ -34,7 +34,7 @@ class WonderPhototsTableViewController: UITableViewController, UINavigationContr
         wonderPhotosFetchRequest.predicate = NSPredicate(format: "wonderName = %@", viewSelectedWonderName) //select 1 wonder record only 
         
         do {
-            let wonderPhotosFetchResults = try wonderPhotosContext.executeFetchRequest(wonderPhotosFetchRequest) as? [Photos]
+            let wonderPhotosFetchResults = try wonderPhotosContext.fetch(wonderPhotosFetchRequest) as? [Photos]
             wonderPhotosArray = wonderPhotosFetchResults!
         } catch {
             print("Could not fetch \(error)")
@@ -50,23 +50,23 @@ class WonderPhototsTableViewController: UITableViewController, UINavigationContr
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return wonderPhotosArray.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("WonderPhotoCell", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WonderPhotoCell", for: indexPath)
         
-        let wonderPhoto: Photos = wonderPhotosArray[indexPath.row]
+        let wonderPhoto: Photos = wonderPhotosArray[(indexPath as NSIndexPath).row]
         let wonderPhotoName = wonderPhoto.wonderName
-        let wonderPhotoImage = UIImage(data: wonderPhoto.wonderPhoto! as NSData)
+        let wonderPhotoImage = UIImage(data: wonderPhoto.wonderPhoto! as Data)
         
         if let nameLabel = cell.viewWithTag(101) as? UILabel {
             nameLabel.text = wonderPhotoName
@@ -79,7 +79,7 @@ class WonderPhototsTableViewController: UITableViewController, UINavigationContr
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.frame.size.height;
     }
     

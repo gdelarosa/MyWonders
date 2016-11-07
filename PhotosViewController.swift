@@ -21,12 +21,12 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
     var photosWonderName: String!
     var photosSourceType: String! // Decalre var library or camera to be used for incoming segue
    
-    @IBAction func addWonderPhotoAction(sender: AnyObject) {
+    @IBAction func addWonderPhotoAction(_ sender: AnyObject) {
         accessCameraOrPhotoLibrary() // Plus button on right // Accessing function from below.
         
     }
     
-    @IBAction func addImageToCoreDataAction(sender: AnyObject) {
+    @IBAction func addImageToCoreDataAction(_ sender: AnyObject) {
         addImageToCoreData()
    
         
@@ -53,18 +53,18 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
         imagePicker.delegate = self
         
         if photosSourceType == "Photos" {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
-                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+                imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
                 imagePicker.mediaTypes = [kUTTypeImage as NSString as String]
-                presentViewController(imagePicker, animated: true, completion: nil)
+                present(imagePicker, animated: true, completion: nil)
             }
         }
         
         if photosSourceType == "Camera" {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) { // Checks if camera is available
-                imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-                imagePicker.cameraCaptureMode = .Photo
-                presentViewController(imagePicker, animated: true, completion: nil)
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) { // Checks if camera is available
+                imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                imagePicker.cameraCaptureMode = .photo
+                present(imagePicker, animated: true, completion: nil)
             } else {
                 noCamera() // Will run noCamera function 
             }
@@ -74,19 +74,19 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
         
     }
 
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) { //delegate to cancel photo selection from library
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { //delegate to cancel photo selection from library
+        dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        dismiss(animated: true, completion: nil)
         
         let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-        if mediaType.isEqualToString(kUTTypeImage as NSString as String) { // Media is an image
+        if mediaType.isEqual(to: kUTTypeImage as NSString as String) { // Media is an image
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
             
             wonderImage.image = image
-            wonderImage.contentMode = .ScaleAspectFit
+            wonderImage.contentMode = .scaleAspectFit
             
         } // End of mediaType is Image
         
@@ -100,12 +100,12 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func addImageToCoreData() {
     
-    let photosAppDel:AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let photosAppDel:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let photosContext:NSManagedObjectContext = photosAppDel.managedObjectContext
     
-    if addimageSwitchLabel.on {
+    if addimageSwitchLabel.isOn {
     let newImageData = UIImageJPEGRepresentation(wonderImage.image!, 1) //binary data object of photo image
-    let newPhoto = NSEntityDescription.insertNewObjectForEntityForName("Photos", inManagedObjectContext: photosContext) as! Photos
+    let newPhoto = NSEntityDescription.insertNewObject(forEntityName: "Photos", into: photosContext) as! Photos
     
     newPhoto.wonderName = photosWonderName
     newPhoto.wonderPhoto = newImageData
@@ -121,10 +121,10 @@ class PhotosViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func noCamera() { // Function if user does not have camera
-        let alertVC = UIAlertController(title: "No Camera!", message: "Your iDevice does not have a camera", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style:.Default, handler: nil)
+        let alertVC = UIAlertController(title: "No Camera!", message: "Your iDevice does not have a camera", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style:.default, handler: nil)
         alertVC.addAction(okAction)
-        presentViewController(alertVC, animated: true, completion: nil)
+        present(alertVC, animated: true, completion: nil)
     }
 
 }
